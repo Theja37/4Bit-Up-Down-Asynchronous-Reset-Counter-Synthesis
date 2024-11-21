@@ -25,6 +25,7 @@ Synthesis requires three files as follows,
 •	In your terminal type “gedit input_constraints.sdc” to create an SDC File if you do not have one.
 
 counter.v
+~~~
 `timescale 1ns / 1 ns
 module counter(clk,m,rst,count);
 input clk,m,rst;
@@ -39,9 +40,9 @@ else
 count=count-1;
 end
 endmodule
-
+~~~
 •	The SDC File must contain the following commands;
-
+~~~
 create_clock -name clk -period 2 -waveform {0 1} [get_ports "clk"]
 
 set_clock_transition -rise 0.1 [get_clocks "clk"]
@@ -61,7 +62,7 @@ ii, iii → Sets Clock Rise and Fall time to 100ps.
 iv → Sets Clock Uncertainty to 10ps.
 
 v, vi → Sets the maximum limit for I/O port delay to 1ps.
-
+~~~
 ### Step 3 : Performing Synthesis
 
 The Liberty files are present in the library path,
@@ -79,7 +80,7 @@ used.
 
 • Genus Script file with .tcl file Extension commands are executed one by one to synthesize the netlist.
 run.tcl
-
+~~~
 read_libs /cadence/install/FOUNDRY-01/digital/90nm/dig/lib/slow.lib
 read_hdl counter.v
 elaborate
@@ -102,7 +103,7 @@ write_hdl > counter_netlist.v
 write_sdc > output_constraints.sdc 
 
 gui_show
-
+~~~
 
 
 #### Synthesis RTL Schematic :
